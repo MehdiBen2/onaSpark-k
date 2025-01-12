@@ -1,0 +1,122 @@
+{% extends "base/base.html" %}
+
+{% block content %}
+<div class="container-fluid">
+    <div class="row min-vh-100">
+        <!-- Sidebar -->
+        <div class="col-md-3 col-lg-2 bg-dark sidebar">
+            <div class="position-sticky pt-3">
+                <ul class="nav flex-column">
+                    <li class="nav-item">
+                        <a class="nav-link {% if active_page == 'introduction' %}active{% endif %}" href="{{ url_for('reuse_section', section='introduction') }}">
+                            <i class="fas fa-info-circle"></i> Introduction
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link {% if active_page == 'regulations' %}active{% endif %}" href="{{ url_for('reuse_section', section='regulations') }}">
+                            <i class="fas fa-book"></i> Réglementations
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link {% if active_page == 'methods' %}active{% endif %}" href="{{ url_for('reuse_section', section='methods') }}">
+                            <i class="fas fa-vial"></i> Méthodes de Réutilisation
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link {% if active_page == 'case-studies' %}active{% endif %}" href="{{ url_for('reuse_section', section='case-studies') }}">
+                            <i class="fas fa-microscope"></i> Études de Cas
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link {% if active_page == 'documentation' %}active{% endif %}" href="{{ url_for('reuse_section', section='documentation') }}">
+                            <i class="fas fa-file-alt"></i> Documentation
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link {% if active_page == 'water_quality' %}active{% endif %}" href="{{ url_for('water_quality.water_quality_assessment_route') }}">
+                            <i class="fas fa-tint"></i> Évaluation de la Qualité
+                        </a>
+                    </li>
+                </ul>
+            </div>
+            <div class="ona-spark-engine text-center py-3">
+                <div class="spark-engine-text">
+                    <span class="ona-text">ONA</span>
+                    <span class="spark-text">SPARK ENGINE</span>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Main content -->
+        <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
+            {% block reuse_content %}{% endblock %}
+        </main>
+    </div>
+    
+</div>
+
+<style>
+.sidebar {
+    position: sticky;
+    top: 56px; /* Adjust this value based on your navbar height */
+    height: calc(100vh - 56px);
+    z-index: 100;
+    padding: 0;
+    box-shadow: inset -1px 0 0 rgba(0, 0, 0, .1);
+}
+
+.sidebar .nav-link {
+    color: rgba(255, 255, 255, .75);
+    padding: .75rem 1rem;
+    margin: 0.2rem 0.5rem;
+    border-radius: 5px;
+}
+
+.sidebar .nav-link:hover {
+    color: rgba(255, 255, 255, .9);
+    background: rgba(255, 255, 255, .1);
+}
+
+.sidebar .nav-link.active {
+    color: white;
+    background: var(--ona-primary);
+}
+
+.sidebar .nav-link i {
+    margin-right: .5rem;
+}
+
+.ona-spark-engine {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background: rgba(0, 0, 0, 0.2);
+    padding: 1rem 0;
+    color: white;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.spark-engine-text {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    line-height: 1.2;
+}
+
+.ona-text {
+    font-size: 0.8rem;
+    color: rgba(255, 255, 255, 0.7);
+}
+
+.spark-text {
+    font-size: 1rem;
+    background: linear-gradient(135deg, #2196f3, #162a99);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    filter: drop-shadow(0 1px 2px rgba(0,0,0,0.2));
+}
+</style>
+{% endblock %}
